@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+flake8 = "*"
+black = "*"
+
+[packages]
+wagtail = "<2.13,>=2.12"
+Django = "<3.2,>=3.1"
+wagtail-markdown = "*"
+wagtailfontawesome = "*"
+gunicorn = "==20.0.4"
+
+[requires]
+python_version = "3.9"
+
+[pipenv]
+allow_prereleases = true
