@@ -30,6 +30,7 @@ WORKDIR ${WORKDIR}
 # Install the project requirements.
 COPY Pipfile ${WORKDIR}
 RUN pip install pipenv --no-cache-dir && \
+    pipenv lock --clear && \
     pipenv install --system --deploy && \
     pip uninstall -y pipenv virtualenv-clone virtualenv
 
