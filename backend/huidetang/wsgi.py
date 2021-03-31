@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "huidetang.settings.dev")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "huidetang.settings.localhost")
 
 application = get_wsgi_application()
