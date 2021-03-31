@@ -30,6 +30,7 @@ services:
       DATABASE_URL: 'postgresql://postgres:password@postgres:5432/postgres'
     depends_on:
       - "postgres"
+      - "minio"
   frontend:
     build:
       context: frontend
@@ -55,11 +56,8 @@ services:
       - MINIO_SECRET_KEY=p@ssword
     entrypoint:
       - /bin/sh
+      - -c
     command:
-      - -c "
-        mkdir -p /data/.minio.sys/buckets;
-        cp -r /policies/* /data/.minio.sys/;
-        cp -r /export/* /data/;
-        /usr/bin/minio server /data"
+      - "mkdir -p /data/.minio.sys/buckets; cp -r /policies/* /data/.minio.sys/; cp -r /export/* /data/; /usr/bin/minio server /data"
 volumes:
   db-data:
