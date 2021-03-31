@@ -1,36 +1,40 @@
 {
-    "Version": "2012-10-17",
-    "Statement": [
+  "Version": "2012-10-17",
+  "Statement": [
       {
-        "Effect": "Allow",
-        "Principal": {
-          "AWS": [
-            "*"
-          ]
-        },
-        "Action": [
-          "s3:GetBucketLocation",
-          "s3:ListBucket"
-        ],
-        "Resource": [
-          "arn:aws:s3:::static"
-        ]
+          "Sid": "PublicGetObject",
+          "Effect": "Allow",
+          "Principal": "*",
+          "Action": "s3:GetObject",
+          "Resource": "arn:aws:s3:::static/images/*"
       },
       {
-        "Effect": "Allow",
-        "Principal": {
-          "AWS": [
-            "*"
-          ]
-        },
-        "Action": [
-          "s3:GetObject",
-          "s3:PutObject",
-          "s3:DeleteObject"
-        ],
-        "Resource": [
-          "arn:aws:s3:::static/*"
-        ]
+          "Sid": "AllowUserManageBucket",
+          "Effect": "Allow",
+          "Principal": {
+              "AWS": "*"
+          },
+          "Action": [
+              "s3:ListBucket",
+              "s3:GetBucketLocation",
+              "s3:ListBucketMultipartUploads",
+              "s3:ListBucketVersions"
+          ],
+          "Resource": "arn:aws:s3:::static"
+      },
+      {
+          "Sid": "AllowUserManageBucketObjects",
+          "Effect": "Allow",
+          "Principal": {
+              "AWS": "*"
+          },
+          "Action":
+            [
+              "s3:GetObject",
+              "s3:PutObject",
+              "s3:DeleteObject"
+          ],
+          "Resource": "arn:aws:s3:::static/*"
       }
-    ]
-  }
+  ]
+}
