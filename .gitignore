@@ -1,2 +1,5 @@
 .ionide/
 vendor/bundle
+minio/config/
+minio/data/
+
