@@ -49,8 +49,8 @@ services:
     volumes:
       - ./minio/data:/data
       - ./minio/export:/export
-      - ./docker/minio/config:/root/.minio
-      - ./docker/minio/policies:/policies
+      - ./minio/config:/root/.minio
+      - ./minio/policies:/policies
     environment:
       - MINIO_ACCESS_KEY=development
       - MINIO_SECRET_KEY=p@ssword
