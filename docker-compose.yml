@@ -29,7 +29,7 @@ services:
       PYTHONPATH: .
       DATABASE_URL: 'postgresql://postgres:password@postgres:5432/postgres'
       AWS_S3_CUSTOM_DOMAIN: 'minio:9000'
-      AWS_STORAGE_BUCKET_NAME: 'static'
+      AWS_STORAGE_BUCKET_NAME: 'wagtail'
       AWS_ACCESS_KEY_ID: 'huidetang'
       AWS_S3_REGION_NAME: 'us-east-1'
       AWS_SECRET_ACCESS_KEY: 'jsYIDsqqIt9JShu'
@@ -72,9 +72,8 @@ services:
     entrypoint: >
       /bin/sh -c "
       until (/usr/bin/mc config host add static http://minio:9000 huidetang jsYIDsqqIt9JShu) do echo '...waiting...' && sleep 1; done;
-      /usr/bin/mc mb static/images;
-      /usr/bin/mc admin user add static wagtail;
-      /usr/bin/mc policy download static/images;
+      /usr/bin/mc mb static/wagtail;
+      /usr/bin/mc admin user add static wagtail jsYIDsqqIt9JShu;
       exit 0;
       "
 volumes:
