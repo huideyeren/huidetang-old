@@ -30,9 +30,9 @@ services:
       DATABASE_URL: 'postgresql://postgres:password@postgres:5432/postgres'
       AWS_S3_CUSTOM_DOMAIN: 'minio:9000'
       AWS_STORAGE_BUCKET_NAME: 'static'
-      AWS_ACCESS_KEY_ID: 'minioadmin'
+      AWS_ACCESS_KEY_ID: 'huidetang'
       AWS_S3_REGION_NAME: 'us-east-1'
-      AWS_SECRET_ACCESS_KEY: 'minioadmin'
+      AWS_SECRET_ACCESS_KEY: 'jsYIDsqqIt9JShu'
       AWS_S3_URL_PROTOCOL: 'http:'
     depends_on:
       - "postgres"
@@ -58,8 +58,8 @@ services:
       - ./minio/config:/root/.minio
       - ./minio/policies:/policies
     environment:
-      MINIO_ACCESS_KEY: 'development'
-      MINIO_SECRET_KEY: 'p@ssword'
+      MINIO_ACCESS_KEY: 'huidetang'
+      MINIO_SECRET_KEY: 'jsYIDsqqIt9JShu'
     entrypoint:
       - /bin/sh
       - -c
@@ -71,7 +71,7 @@ services:
       - minio
     entrypoint: >
       /bin/sh -c "
-      until (/usr/bin/mc config host add static http://minio:9000 development p@ssword) do echo '...waiting...' && sleep 1; done;
+      until (/usr/bin/mc config host add static http://minio:9000 huidetang jsYIDsqqIt9JShu) do echo '...waiting...' && sleep 1; done;
       /usr/bin/mc mb static/images;
       /usr/bin/mc admin user add static wagtail;
       /usr/bin/mc policy download static/images;
@@ -79,3 +79,4 @@ services:
       "
 volumes:
   db-data:
+  
