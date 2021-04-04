@@ -6,13 +6,17 @@
           "Effect": "Allow",
           "Principal": "*",
           "Action": "s3:GetObject",
-          "Resource": "arn:aws:s3:::wagtail/images/*"
+          "Resource": [
+            "arn:aws:s3:::wagtail/images/*",
+            "arn:aws:s3:::wagtail/static/*",
+            "arn:aws:s3:::wagtail/documents/*"
+          ]
       },
       {
           "Sid": "AllowUserManageBucket",
           "Effect": "Allow",
           "Principal": {
-            "AWS": "arn:aws:iam::wagtail"
+            "AWS": "arn:aws:iam::huidetang:wagtail"
           },
           "Action": [
               "s3:ListBucket",
@@ -25,13 +29,13 @@
       {
           "Sid": "AllowUserManageBucketObjects",
           "Effect": "Allow",
-          "Principal": {
-            "AWS": "arn:aws:iam::wagtail"
-          },
+          "Principal": "arn:aws:iam::huidetang:wagtail",
           "Action": [
             "s3:GetObject",
             "s3:PutObject",
-            "s3:DeleteObject"
+            "s3:DeleteObject",
+            "s3:GetObjectAcl",
+            "s3:PutObjectAcl"
         ],
           "Resource": "arn:aws:s3:::wagtail/*"
       }

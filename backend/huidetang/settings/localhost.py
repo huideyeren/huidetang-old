@@ -68,6 +68,15 @@ if "AWS_STORAGE_BUCKET_NAME" in os.environ:
     # https://github.com/jschneier/django-storages/blob/10d1929de5e0318dbd63d715db4bebc9a42257b5/storages/backends/s3boto3.py#L217
     AWS_S3_URL_PROTOCOL = os.environ.get("AWS_S3_URL_PROTOCOL", "https:")
 
+    AWS_S3_ENDPOINT_URL = os.environ["AWS_S3_ENDPOINT_URL"]
+
+    AWS_LOCATION = "wagtail"
+
+    
+    # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    # STATIC_URL = "http://localhost:9090/minio/%s/" % (AWS_LOCATION)
+    
+
 try:
     from .local import *
 except ImportError:

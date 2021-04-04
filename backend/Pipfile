@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 flake8 = "*"
 black = "*"
+awscli = "*"
 
 [packages]
 wagtail = "<2.13,>=2.12"
@@ -14,7 +15,6 @@ wagtail-markdown = "*"
 wagtailfontawesome = "*"
 gunicorn = "==20.0.4"
 psycopg2 = "*"
-awscli = "*"
 django-storages = {extras = ["boto3"], version = "*"}
 wagtail-storages = "*"
 
