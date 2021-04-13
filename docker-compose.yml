@@ -50,7 +50,6 @@ services:
       - NODE_ENV=development
   minio:
     image: minio/minio:latest
-    container_name: 'minio'
     ports:
       - 9090:9000
     volumes:
