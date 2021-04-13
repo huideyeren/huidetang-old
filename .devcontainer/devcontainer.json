@@ -21,8 +21,13 @@
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
+		"appService.enablePythonRemoteDebugging": true,
+		"editor.tabSize": 4,
+		"files.insertFinalNewline": true,
+		"files.trimFinalNewlines": true,
 		"editor.renderWhitespace": "all",
 		"editor.renderControlCharacters": true,
+		"editor.formatOnSave": true,
 		"editor.fontFamily": "Cica, \"Myrica M\", Ricty, \"Migu 1M\", Menlo, Monaco, 'Courier New', monospace",
 		"editor.fontSize": 16,
 		"debug.console.fontSize": 14,
