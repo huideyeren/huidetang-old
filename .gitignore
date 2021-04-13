@@ -2,4 +2,5 @@
 vendor/bundle
 minio/config/
 minio/data/
-
+.gitconfig
+.DS_Store

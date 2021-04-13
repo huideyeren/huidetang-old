@@ -1,8 +1,20 @@
 # Use an official Python runtime based on Debian 10 "buster" as a parent image.
 FROM python:3.9-slim-buster
 
+ARG USERNAME=wagtail
+ARG USER_UID=1000
+ARG USER_GID=${USER_UID}
+
 # Add user that will be used in the container.
-RUN useradd wagtail
+RUN apt update --yes --quiet && apt install -y gnupg software-properties-common \
+    && apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0 \
+    && apt-add-repository https://cli.github.com/packages \
+    && apt update --yes --quiet && apt install -y git gh \
+    && groupadd --gid ${USER_GID} ${USERNAME} \
+    && useradd -s /bin/bash --uid ${USER_UID} --gid ${USER_GID} -m ${USERNAME} \
+    && apt install -y sudo \
+    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME\
+    && chmod 0440 /etc/sudoers.d/$USERNAME
 
 # Port used by this container to serve HTTP.
 EXPOSE 8000
@@ -16,13 +28,15 @@ ENV PYTHONUNBUFFERED=1 \
     WORKDIR=/app/
 
 # Install system packages required by Wagtail and Django.
-RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
+RUN apt update --yes --quiet && apt install --yes --quiet --no-install-recommends \
     build-essential \
     libpq-dev \
     libjpeg62-turbo-dev \
     zlib1g-dev \
     libwebp-dev \
  && rm -rf /var/lib/apt/lists/*
+
+
 
 # Use /app folder as a directory where the source code is stored.
 WORKDIR ${WORKDIR}
@@ -37,13 +51,13 @@ RUN pip install pipenv --no-cache-dir && \
 # Set this directory to be owned by the "wagtail" user. This Wagtail project
 # uses SQLite, the folder needs to be owned by the user that
 # will be writing to the database file.
-RUN chown wagtail:wagtail /app
+RUN chown ${USER_GID}:${USER_UID} /app
 
 # Copy the source code of the project into the container.
-COPY --chown=wagtail:wagtail . .
+COPY --chown=${USER_GID}:${USER_UID} . .
 
 # Use user "wagtail" to run the build commands below and the server itself.
-USER wagtail
+USER ${USERNAME}
 
 # Collect static files.
 RUN python manage.py collectstatic --noinput --clear
