@@ -36,16 +36,14 @@ RUN apt update --yes --quiet && apt install --yes --quiet --no-install-recommend
     libwebp-dev \
  && rm -rf /var/lib/apt/lists/*
 
-
-
 # Use /app folder as a directory where the source code is stored.
 WORKDIR ${WORKDIR}
 
 # Install the project requirements.
 COPY Pipfile ${WORKDIR}
 RUN pip install pipenv --no-cache-dir && \
-    pipenv lock --clear && \
-    pipenv install --system --deploy && \
+    pipenv lock --clear --dev && \
+    pipenv install --system --deploy --dev && \
     pip uninstall -y pipenv virtualenv-clone virtualenv
 
 # Set this directory to be owned by the "wagtail" user. This Wagtail project

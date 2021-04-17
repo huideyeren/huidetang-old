@@ -5,32 +5,41 @@ from .base import *
 DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qki)e^^_$phndrtm)nm^3pka!_4$53de0i)_j-gzahx(9$hwf('
+SECRET_KEY = "qki)e^^_$phndrtm)nm^3pka!_4$53de0i)_j-gzahx(9$hwf("
 
 # SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ['*'] 
+ALLOWED_HOSTS = ["*"]
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
-        'HOST': 'postgres',
-        'PORT': 5432,
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "password",
+        "HOST": "postgres",
+        "PORT": 5432,
     }
 }
+
+INSTALLED_APPS = INSTALLED_APPS + [
+    "debug_toolbar",
+]
+
+MIDDLEWARE = MIDDLEWARE + [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+]
+
+INTERNAL_IPS = ["127.0.0.1"]
 
 if "AWS_STORAGE_BUCKET_NAME" in os.environ:
     # Add django-storages to the installed apps
     INSTALLED_APPS = INSTALLED_APPS + [
         "storages",
         "wagtail_storages",
-        'debug_toolbar',
     ]
 
     # https://docs.djangoproject.com/en/stable/ref/settings/#default-file-storage
@@ -73,10 +82,12 @@ if "AWS_STORAGE_BUCKET_NAME" in os.environ:
 
     AWS_LOCATION = "wagtail"
 
-    
-    # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    # STATIC_URL = "http://localhost:9090/minio/%s/" % (AWS_LOCATION)
-    
+    AWS_S3_USE_SSL = False
+    AWS_S3_SECURE_URLS = False
+
+    STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    STATIC_URL = "http://localhost:9090/minio/wagtail/%s/" % (AWS_LOCATION)
+
 
 try:
     from .local import *
