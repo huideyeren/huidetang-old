@@ -28,8 +28,8 @@ services:
     environment:
       PYTHONPATH: .
       DATABASE_URL: 'postgresql://postgres:password@postgres:5432/postgres'
-      AWS_S3_CUSTOM_DOMAIN: 'minio:9000'
-      AWS_S3_ENDPOINT_URL: 'http://minio:9000/'
+      AWS_S3_CUSTOM_DOMAIN: 'localhost:9090/minio/wagtail'
+      AWS_S3_ENDPOINT_URL: 'http://localhost:9090/'
       AWS_STORAGE_BUCKET_NAME: 'wagtail'
       AWS_ACCESS_KEY_ID: 'huidetang'
       AWS_S3_REGION_NAME: 'us-east-1'
@@ -78,4 +78,3 @@ services:
       "
 volumes:
   db-data:
-  

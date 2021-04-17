@@ -30,6 +30,7 @@ if "AWS_STORAGE_BUCKET_NAME" in os.environ:
     INSTALLED_APPS = INSTALLED_APPS + [
         "storages",
         "wagtail_storages",
+        'debug_toolbar',
     ]
 
     # https://docs.djangoproject.com/en/stable/ref/settings/#default-file-storage
