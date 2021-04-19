@@ -28,7 +28,7 @@ services:
     environment:
       PYTHONPATH: .
       DATABASE_URL: 'postgresql://postgres:password@postgres:5432/postgres'
-      AWS_S3_CUSTOM_DOMAIN: 'localhost:9090/minio/wagtail'
+      AWS_S3_CUSTOM_DOMAIN: 'localhost:9090/wagtail'
       AWS_S3_ENDPOINT_URL: 'http://minio:9000/'
       AWS_STORAGE_BUCKET_NAME: 'wagtail'
       AWS_ACCESS_KEY_ID: 'huidetang'
@@ -57,6 +57,7 @@ services:
       - ./minio/export:/export
       - ./minio/config:/root/.minio
       - ./minio/policies:/policies
+      - ./minio/policies/buckets/wagtail/policy.json:/policy.json
     environment:
       MINIO_ACCESS_KEY: 'huidetang'
       MINIO_SECRET_KEY: 'jsYIDsqqIt9JShu'
@@ -64,17 +65,17 @@ services:
       - /bin/sh
       - -c
     command:
-      - "mkdir -p /data/.minio.sys/buckets; cp -r /policies/* /data/.minio.sys/; cp -r /export/* /data/; /usr/bin/minio server /data"
-  createbuckets:
-    image: minio/mc
-    depends_on:
-      - minio
-    entrypoint: >
-      /bin/sh -c "
-      until (/usr/bin/mc config host add wagtail http://minio:9000 huidetang jsYIDsqqIt9JShu) do echo '...waiting...' && sleep 1; done;
-      /usr/bin/mc mb wagtail/wagtail;
-      /usr/bin/mc admin user add wagtail wagtail jsYIDsqqIt9JShu;
-      exit 0;
-      "
+      - "mkdir -p /data/wagtail; mkdir -p /data/.minio.sys/buckets; cp -r /policy.json /data/.minio.sys/buckets/wagtail/policy.json; cp -r /export/* /data/; /usr/bin/minio server /data"
+  # createbuckets:
+    # image: minio/mc
+    # depends_on:
+    #   - minio
+    # entrypoint: >
+    #   /bin/sh -c "
+    #   until (/usr/bin/mc config host add wagtail http://minio:9000 huidetang jsYIDsqqIt9JShu) do echo '...waiting...' && sleep 1; done;
+    #   /usr/bin/mc mb wagtail/wagtail;
+    #   /usr/bin/mc admin user add wagtail wagtail jsYIDsqqIt9JShu;
+    #   exit 0;
+    #   "
 volumes:
   db-data:
