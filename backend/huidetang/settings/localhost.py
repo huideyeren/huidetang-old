@@ -39,11 +39,11 @@ if "AWS_STORAGE_BUCKET_NAME" in os.environ:
     # Add django-storages to the installed apps
     INSTALLED_APPS = INSTALLED_APPS + [
         "storages",
-        "wagtail_storages",
+        # "wagtail_storages",
     ]
 
     # https://docs.djangoproject.com/en/stable/ref/settings/#default-file-storage
-    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    DEFAULT_FILE_STORAGE = "huidetang.aws.utils.MediaRootS3BotoStorage"
 
     AWS_STORAGE_BUCKET_NAME = os.environ["AWS_STORAGE_BUCKET_NAME"]
 
@@ -59,7 +59,7 @@ if "AWS_STORAGE_BUCKET_NAME" in os.environ:
     # Default ACL for new files should be "private" - not accessible to the
     # public. Images should be made available to public via the bucket policy,
     # where the documents should use wagtail-storages.
-    AWS_DEFAULT_ACL = "private"
+    AWS_DEFAULT_ACL = "public"
 
     # We generally use this setting in production to put the S3 bucket
     # behind a CDN using a custom domain, e.g. media.llamasavers.com.
@@ -85,8 +85,9 @@ if "AWS_STORAGE_BUCKET_NAME" in os.environ:
     AWS_S3_USE_SSL = False
     AWS_S3_SECURE_URLS = False
 
-    STATICFILES_STORAGE = "storages.backends.s3boto3.S3StaticStorage"
-    STATIC_URL = "http://localhost:9090/wagtail/%s/" % (AWS_LOCATION)
+    STATICFILES_STORAGE = "huidetang.aws.utils.StaticRootS3BotoStorage"
+    STATIC_URL = "http://localhost:9090/wagtail/static/"
+    MEDIA_URL = "http://localhost:9090/wagtail/media/"
 
 
 try:
