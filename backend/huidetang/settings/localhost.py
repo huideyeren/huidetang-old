@@ -59,7 +59,11 @@ if "AWS_STORAGE_BUCKET_NAME" in os.environ:
     # Default ACL for new files should be "private" - not accessible to the
     # public. Images should be made available to public via the bucket policy,
     # where the documents should use wagtail-storages.
-    AWS_DEFAULT_ACL = "public"
+    AWS_DEFAULT_ACL = "public-read"
+
+    AWS_S3_OBJECT_PARAMETERS = {
+        "CacheControl": "max-age=86400",  # キャッシュの有効期限（最長期間）= 1日
+    }
 
     # We generally use this setting in production to put the S3 bucket
     # behind a CDN using a custom domain, e.g. media.llamasavers.com.
@@ -80,15 +84,28 @@ if "AWS_STORAGE_BUCKET_NAME" in os.environ:
 
     AWS_S3_ENDPOINT_URL = os.environ["AWS_S3_ENDPOINT_URL"]
 
-    AWS_LOCATION = "wagtail"
+    AWS_LOCATION = AWS_STORAGE_BUCKET_NAME
 
-    AWS_S3_USE_SSL = False
-    AWS_S3_SECURE_URLS = False
+    if AWS_S3_URL_PROTOCOL == "https:":
+        AWS_S3_USE_SSL = True
+        AWS_S3_SECURE_URLS = True
+    else:
+        AWS_S3_USE_SSL = False
+        AWS_S3_SECURE_URLS = False
+
+    AWS_S3_URL = "%s" % AWS_S3_CUSTOM_DOMAIN
 
     STATICFILES_STORAGE = "huidetang.aws.utils.StaticRootS3BotoStorage"
-    STATIC_URL = "http://localhost:9090/wagtail/static/"
-    MEDIA_URL = "http://localhost:9090/wagtail/media/"
-
+    STATIC_URL = "%s//%s/%s/" % (
+        AWS_S3_URL_PROTOCOL,
+        AWS_S3_URL,
+        "static",
+    )
+    MEDIA_URL = "%s//%s/%s/" % (
+        AWS_S3_URL_PROTOCOL,
+        AWS_S3_URL,
+        "media",
+    )
 
 try:
     from .local import *
