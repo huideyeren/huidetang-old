@@ -14,7 +14,7 @@
       "Resource": "arn:aws:s3:::wagtail"
     },
     {
-      "Sid": "AllowUserManageBucketObjects",
+      "Sid": "AllowAccessToStaticBucketObjects",
       "Effect": "Allow",
       "Principal": "*",
       "Action": [
@@ -22,7 +22,11 @@
         "s3:PutObject",
         "s3:DeleteObject"
       ],
-      "Resource": "arn:aws:s3:::wagtail/*"
+      "Resource": [
+        "arn:aws:s3:::static/*",
+        "arn:aws:s3:::media/*",
+        "arn:aws:s3:::wagtail/*"
+      ]
     }
   ]
 }

@@ -1,4 +1,13 @@
 from storages.backends.s3boto3 import S3Boto3Storage
- 
-def MediaRootS3BotoStorage(): return S3Boto3Storage(location='media')
-def StaticRootS3BotoStorage(): return S3Boto3Storage(location='static')
+
+
+class MediaRootS3BotoStorage(S3Boto3Storage):
+    def __init__(self) -> None:
+        self.location = "media"
+        super().__init__()
+
+
+class StaticRootS3BotoStorage(S3Boto3Storage):
+    def __init__(self) -> None:
+        self.location = "static"
+        super().__init__()

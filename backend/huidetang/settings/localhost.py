@@ -96,14 +96,16 @@ if "AWS_STORAGE_BUCKET_NAME" in os.environ:
     AWS_S3_URL = "%s" % AWS_S3_CUSTOM_DOMAIN
 
     STATICFILES_STORAGE = "huidetang.aws.utils.StaticRootS3BotoStorage"
-    STATIC_URL = "%s//%s/%s/" % (
+    STATIC_URL = "%s//%s/%s/%s/" % (
         AWS_S3_URL_PROTOCOL,
         AWS_S3_URL,
+        AWS_LOCATION,
         "static",
     )
-    MEDIA_URL = "%s//%s/%s/" % (
+    MEDIA_URL = "%s//%s/%s/%s/" % (
         AWS_S3_URL_PROTOCOL,
         AWS_S3_URL,
+        AWS_LOCATION,
         "media",
     )
 
