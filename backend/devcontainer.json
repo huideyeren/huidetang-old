@@ -7,7 +7,7 @@
 	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
 	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
 	"dockerComposeFile": [
-		"../docker-compose.yml",
+		"../.devcontainer/docker-compose.yml",
 		"docker-compose.yml"
 	],
 
@@ -17,7 +17,7 @@
 
 	// The optional 'workspaceFolder' property is the path VS Code should open by default when
 	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
-	"workspaceFolder": "/workspace",
+	"workspaceFolder": "/workspace/backend",
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
@@ -52,12 +52,9 @@
 		"editor.formatOnPaste": false,
 		"python.autoComplete.addBrackets": true,
 		"python.languageServer": "Pylance",
-		"eslint.alwaysShowStatus": true,
-		"eslint.workingDirectories": [
-		"./frontend"
-		],
 		"python.analysis.completeFunctionParens": true,
-		"terminal.integrated.shell.linux": "/bin/bash"
+		"terminal.integrated.shell.linux": "/bin/bash",
+    "python.pythonPath": "/usr/local/bin/python"
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
@@ -82,10 +79,14 @@
 		"njpwerner.autodocstring",
 		"donjayamanne.python-extension-pack",
 		"lextudio.restructuredtext",
-		"mtxr.sqltools",
-		"mtxr.sqltools-driver-pg",
 		"ianhoney.task-master",
-		"ms-azuretools.vscode-docker"
+		"coenraads.bracket-pair-colorizer-2",
+		"ms-azuretools.vscode-docker",
+		"ryanluker.vscode-coverage-gutters",
+    "docsmsft.docs-yaml",
+    "christian-kohler.path-intellisense",
+    "pflannery.vscode-versionlens",
+    "bajdzis.vscode-database"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -95,7 +96,7 @@
 	// "runServices": [],
 
 	// Uncomment the next line if you want to keep your containers running after VS Code shuts down.
-	"shutdownAction": "stopCompose",
+	"shutdownAction": "none",
 
 	// Uncomment the next line to run commands after the container is created - for example installing curl.
 	// "postCreateCommand": "apt-get update && apt-get install -y curl",

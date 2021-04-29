@@ -1,0 +1,73 @@
+{
+    "name": "Next.js Frontend",
+    "dockerComposeFile": [
+		"../.devcontainer/docker-compose.yml",
+		"docker-compose.yml"
+	],
+    "service": "frontend",
+    "workspaceFolder": "/workspace/frontend",
+    "settings": {
+      "editor.tabSize": 2,
+      "files.insertFinalNewline": true,
+      "files.trimFinalNewlines": true,
+      "editor.renderWhitespace": "all",
+      "editor.renderControlCharacters": true,
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+      },
+      "editor.fontFamily": "Cica, \"Myrica M\", Ricty, \"Migu 1M\", Menlo, Monaco, 'Courier New', monospace",
+      "editor.fontSize": 16,
+      "debug.console.fontSize": 14,
+      "git.confirmSync": false,
+      "terminal.integrated.fontSize": 16,
+      "editor.formatOnPaste": false,
+      "eslint.alwaysShowStatus": true,
+      "eslint.workingDirectories": [
+        "."
+      ],
+      "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "extensions": [
+      "streetsidesoftware.code-spell-checker",
+      "ryanluker.vscode-coverage-gutters",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "mikestead.dotenv",
+      "mhutchie.git-graph",
+      "donjayamanne.githistory",
+      "felipecaputo.git-project-manager",
+      "github.vscode-pull-request-github",
+      "codezombiech.gitignore",
+      "eamodio.gitlens",
+      "ivangabriele.vscode-heroku",
+      "ms-ceintl.vscode-language-pack-ja",
+      "ianhoney.task-master",
+      "ms-azuretools.vscode-docker",
+      "coenraads.bracket-pair-colorizer-2",
+      "anseki.vscode-color",
+      "mrmlnc.vscode-csscomb",
+      "msjsdiag.debugger-for-chrome",
+      "docsmsft.docs-yaml",
+      "orta.vscode-jest",
+      "eg2.vscode-npm-script",
+      "christian-kohler.npm-intellisense",
+      "christian-kohler.path-intellisense",
+      "humao.rest-client",
+      "syler.sass-indented",
+      "cssho.vscode-svgviewer",
+      "abotteram.typescript-react-snippets",
+      "ph1p.zeit-co-vscode-schemas",
+      "pflannery.vscode-versionlens",
+      "visualstudioexptteam.vscodeintellicode",
+      "andrewmcodes.tailwindcss-extension-pack",
+      "sudoaugustin.tailwindcss-transpiler",
+      "norato.storybook-snippets",
+      "cstechnologies.vscode-storybook",
+      "walter-ribeiro.full-react-snippets"
+    ],
+    "forwardPorts": [80],
+    "shutdownAction": "none",
+    "remoteUser": "next"
+}

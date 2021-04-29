@@ -11,7 +11,9 @@
         "s3:ListBucketMultipartUploads",
         "s3:ListBucketVersions"
       ],
-      "Resource": "arn:aws:s3:::wagtail"
+      "Resource": [
+        "arn:aws:s3:::wagtail"
+      ]
     },
     {
       "Sid": "AllowAccessToStaticBucketObjects",
@@ -23,8 +25,6 @@
         "s3:DeleteObject"
       ],
       "Resource": [
-        "arn:aws:s3:::static/*",
-        "arn:aws:s3:::media/*",
         "arn:aws:s3:::wagtail/*"
       ]
     }
