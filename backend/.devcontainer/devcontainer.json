@@ -7,8 +7,8 @@
 	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
 	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
 	"dockerComposeFile": [
-		"../.devcontainer/docker-compose.yml",
-		"docker-compose.yml"
+		"../../.devcontainer/docker-compose.yml",
+		"../../docker-compose.yml"
 	],
 
 	// The 'service' property is the name of the service for the container that VS Code should
@@ -38,7 +38,6 @@
 		"editor.rulers": [
 			88
 		],
-		"appService.enablePythonRemoteDebugging": true,
 		"python.formatting.provider": "black",
 		"python.linting.flake8Enabled": true,
 		"python.linting.mypyEnabled": true,
@@ -54,7 +53,7 @@
 		"python.languageServer": "Pylance",
 		"python.analysis.completeFunctionParens": true,
 		"terminal.integrated.shell.linux": "/bin/bash",
-    "python.pythonPath": "/usr/local/bin/python"
+		"python.pythonPath": "/usr/local/bin/python"
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
@@ -83,10 +82,10 @@
 		"coenraads.bracket-pair-colorizer-2",
 		"ms-azuretools.vscode-docker",
 		"ryanluker.vscode-coverage-gutters",
-    "docsmsft.docs-yaml",
-    "christian-kohler.path-intellisense",
-    "pflannery.vscode-versionlens",
-    "bajdzis.vscode-database"
+		"docsmsft.docs-yaml",
+		"christian-kohler.path-intellisense",
+		"pflannery.vscode-versionlens",
+		"bajdzis.vscode-database"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
