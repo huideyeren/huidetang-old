@@ -1,4 +1,4 @@
-FROM node:lts
+FROM node:14-bullseye-slim
 WORKDIR /opt/next
 
 COPY ./components ./components
