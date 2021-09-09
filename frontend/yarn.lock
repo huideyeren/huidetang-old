@@ -2,12 +2,12 @@
 # yarn lockfile v1
 
 
-"@aspida/fetch@^1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@aspida/fetch/-/fetch-1.6.3.tgz#a9a20a8d82990c45922adb965f72f7010244720d"
-  integrity sha512-wfkC3umL5ND/M2Z28KvqzVtHYoXmtkdbhMvep9KRfpeQZUE8l/vyAt58DzlJ8XKsCuilA/78/W4fz9R1Yy6Diw==
+"@aspida/fetch@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@aspida/fetch/-/fetch-1.7.1.tgz#3aad25367441b3256c7c9d88fd3310762a069810"
+  integrity sha512-IKz+JcCfkg9sbdHi3WDjw/fRHBk97WSABGJ0gKxIyPOpkQ1rCK3o5nk8RDHg/pszMmgSrMeZVxgmpdGqg8EMGw==
   dependencies:
-    aspida "^1.6.3"
+    aspida "^1.7.1"
 
 "@babel/code-frame@7.12.11":
   version "7.12.11"
@@ -1064,10 +1064,10 @@ asn1@~0.2.3:
   dependencies:
     safer-buffer "~2.1.0"
 
-aspida@^1.6.3:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/aspida/-/aspida-1.6.3.tgz#57991ba98aa423c5722bbc237ffa1f3c09668daf"
-  integrity sha512-9qAGVAEXKjwGNGafkg1FqWRd/euTZ5+HKC2z74YSp/b9EIBb4v7Vd2gwuUDIRmjJ1uZYtYYs+FCkYXEGK5RvIA==
+aspida@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/aspida/-/aspida-1.7.1.tgz#b021e1766991b3b9a7b85f297f5ac05af4b42b60"
+  integrity sha512-YIfSeLHPAtIkWnu8QFfKvlPB0/S6sRjD2WgmHuiTbhvTdINqK0KMPNK8WepUORXmUcraSaeHN1xO5MMKTREiTA==
   dependencies:
     "@types/minimist" "^1.2.1"
     chokidar "^3.5.1"
